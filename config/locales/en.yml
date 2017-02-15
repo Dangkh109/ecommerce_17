@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  views.layouts.application.title: "Ecommerce"
+  views_layouts_application_title: "Ecommerce"
+  footer: "Footer is comming"
+  FECO: "FECO"
+  incomming: "in comming"
+  header:
+    header_viewed: "Viewed"
+    header_cart: "Cart"
+    header_pay: "Pay"
