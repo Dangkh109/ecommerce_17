@@ -28,3 +28,56 @@ en:
     header_viewed: "Viewed"
     header_cart: "Cart"
     header_pay: "Pay"
+  views_devise_confirmations_new_submit: "Resend confirmation instructions"
+  views_devise_mailer_confirmation_confirm: "Confirm my account"
+  views_devise_mailer_confirmation_welcome: "Welcome"
+  views_devise_mailer_confirmation_description: "You can confirm your \
+    account email through the link below:"
+  views_devise_mailer_password_hello: "Hello"
+  views_devise_mailer_password_notify: "We're contacting you to notify you \
+    that your password has been changed."
+  views_devise_mailer_reset_hello: "Hello"
+  views_devise_mailer_reset_requested: "Someone has requested a link to \
+    change your password. You can do this through the link below."
+  views_devise_mailer_reset_change: "Change my password"
+  views_devise_mailer_reset_inogre: "If you didn't request this, \
+    please ignore this email."
+  views_devise_mailer_reset_access: "Your password won't change until \
+    you access the link above and create a new one."
+  views_devise_mailer_unlock_hello: "Hello"
+  views_devise_mailer_unlock_locked: "Your account has been locked due \
+    to an excessive number of unsuccessful sign in attempts."
+  views_devise_mailer_unlock_click: "Click the link below to unlock \
+    your account:"
+  views_devise_mailer_unlock_unlock: "Unlock my account"
+  views_devise_passwords_edit_change: "Change your password"
+  views_devise_passwords_edit_new: "New password"
+  views_devise_passwords_edit_confirm: "Confirm new password"
+  views_devise_passwords_edit_submit: "Change my password"
+  views_devise_passwords_new_forgot: "Forgot your password?"
+  views_devise_passwords_new_reset: "Send me reset password instructions"
+  views_devise_registration_edit_edit: "Edit"
+  views_devise_registration_edit_waiting: "Currently waiting confirmation for: "
+  views_devise_registration_edit_leave: "(leave blank if you don't \
+    want to change it)"
+  views_devise_registration_edit_characters: "characters minimum"
+  views_devise_registration_edit_confirm: "(we need your current \
+    password to confirm your changes)"
+  views_devise_registration_edit_update: "Update"
+  views_devise_registration_edit_cancel: "Cancel my account"
+  views_devise_registration_edit_sure: "Are you sure?"
+  views_devise_registration_edit_back: "Back"
+  views_devise_registration_edit_unhappy: "Unhappy"
+  views_devise_registration_new_signup: "Sign up"
+  views_devise_sessions_new_login: "Log in"
+  views_devise_shared_links_login: "Log in"
+  views_devise_shared_links_signup: "Sign up"
+  views_devise_shared_links_forgot: "Forgot your password?"
+  views_devise_shared_links_confirmation: "Didn't receive \
+    confirmation instructions?"
+  views_devise_shared_links_unlock: "Didn't receive unlock instructions"
+  views_devise_shared_links_signin: "Sign in with"
+  views_devise_unlocks_resend: "Resend unlock instructions"
+
+  view_layout_header_logout: "Logout"
+  view_layout_header_login: "Login"
