@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="pic_mountain.jpg" alt="Mountain View" class="image-product">
+      <button type="button" class="btn btn-info" data-toggle="collapse"
+        data-target="#demo"><%= t :Describe %></button>
+      <div id="demo" class="collapse">
+        <%= @product.description %>
+      </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+      <h3><%= t :Detail %></h3>
+      <p><%= t :Name  %><%= @product.name %></p>
+      <p><%= t :Price %><%= @product.price %></p>
+      <p><%= t :In_Stock %></p>
+      <p><%= @product.in_stock  %></p>
+      <p><%= t :Rate %></p>
+      <p><%= @product.rate_average %></p>
+      <div>
+        <button>t :Cart </button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h3><%= t :Randomize %></h3>
+      <%= link_to image_tag("miss.png", class: "image-product"),
+        product_path(id: @randomize) %>
+      <% if @hot.present? %>
+        <h3><%= t :Hot %></h3>
+        <%= link_to image_tag("miss.png", class: "image-product"),
+          product_path(id: @hot.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="text-center"> <h3> <%= t :Relate_Product %></h3> </div>
+  <div class="row">
+    <% @relate.each do |x| %>
+      <div class="col-md-4">
+      <%= link_to image_tag("miss.png", class: "image-product"),
+        product_path(id: x) %>
+    </div>
+    <% end %>
+  </div>
+</div>
