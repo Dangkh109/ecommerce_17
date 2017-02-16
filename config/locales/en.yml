@@ -81,3 +81,5 @@ en:
 
   view_layout_header_logout: "Logout"
   view_layout_header_login: "Login"
+  Cate: "Cate"
+  missing_name: "Name is missed"

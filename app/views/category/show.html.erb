@@ -1,0 +1,20 @@
+<div class="container">
+  <% @products.each do |product| %>
+    <% if product.count > 0 %>
+      <% if product.first.category.name.present? %>
+        <h3><%= link_to product.first.category.name,
+          category_path(id: product.first.category.id) %></h3>
+      <% else %>
+        <h3><%= link_to t(:missing_name),
+          category_path(id: product.first.category.id) %></h3>
+      <% end %>
+      <% product.each do |x| %>
+        <% if x.name.present? %>
+          <li><%= link_to x.name, "#" %></li>
+        <% else %>
+          <li><%= link_to t(:missing_name), "#" %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
