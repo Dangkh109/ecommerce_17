@@ -1,0 +1,13 @@
+<div class="container">
+  <h2><%= @category.name %></h2>
+  <% @products.each_index do |i| %>
+    <% product = @products[i] %>
+    <% if product.count > 0 %>
+      <% cate = Category.find_by id: product.first.category_id %>
+      <h3><%= link_to cate.name, category_path(id: cate.id)%></h3>
+      <% product.each do |x| %>
+        <li><%= link_to x.name, "#"%></li>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
