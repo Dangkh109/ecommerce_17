@@ -24,9 +24,15 @@
             </ul>
           </li>
         <% else %>
-          <li>
-            <%= link_to t(:view_layout_header_login), new_user_session_path %>
-          </li>
+          <ul>
+            <li>
+              <%= link_to t(:view_layout_header_login), new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to t(:view_layout_header_facebook),
+                user_facebook_omniauth_authorize_path %>
+            </li>
+          </ul>
         <% end %>
       </ul>
     </div>

@@ -81,3 +81,4 @@ en:
 
   view_layout_header_logout: "Logout"
   view_layout_header_login: "Login"
+  view_layout_header_facebook: "Login with Facebook"
