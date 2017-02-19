@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about"
   root "static_pages#home"
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-  resources :category, only: [:index, :show]
+  resources :category, only: [:index, :show] do
+    resources :product, only: [:index]
+  end
 end

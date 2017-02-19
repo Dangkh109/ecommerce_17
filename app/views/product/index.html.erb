@@ -1,0 +1,18 @@
+<div class="container">
+  <h1><%= t :Cate %></h1>
+  <% if @category.name.nil? %>
+    <h3><%= link_to t(:missing_name), category_index_path(id: @category.id) %>
+    </h3>
+  <% else %>
+    <h3><%= link_to @category.name, category_index_path(id: @category.id) %>
+    </h3>
+  <% end %>
+  <ul>
+    <% @products.each do |prod| %>
+      <li>
+        <p><%= link_to prod.name, "#" %></p>
+      </li>
+    <% end %>
+  </ul>
+  <div><%= will_paginate @products %></div>
+</div>
