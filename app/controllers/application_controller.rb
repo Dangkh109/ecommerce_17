@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_path
+  end
+
+  def verify_admin
+    unless current_user.present? and current_user.admin?
+      redirect_to root_path
+    end
+  end
+
   private
   def load_category
     @category = Category.find_by id: params[:category_id]

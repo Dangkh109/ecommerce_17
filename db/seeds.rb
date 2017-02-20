@@ -4,15 +4,21 @@ User.create! name: "tracthinh", email: "tracthinh@gmail.com",
 User.create! name: "kieudang", email: "kieudang@gmail.com",
   phone: "9876543210", address: "123 KeangNam", avatar: nil,
   password: "123456", password_confirmation: "123456", role: 0
+User.create! name: "user", email: "user@gmail.com",
+  phone: "9876543210", address: "123 KeangNam", avatar: nil,
+  password: "123456", password_confirmation: "123456", role: 1
 100.times{
   name = Faker::Name.name
   email = Faker::Internet.email
   phone = Faker::PhoneNumber.phone_number
   address = Faker::Address.street_address
   password = "123456"
-  User.create! name: name, email: email, phone: phone, address: address,
+  user = User.create! name: name, email: email, phone: phone, address: address,
     password: password, password_confirmation: password, avatar: nil
+  Order.create! status: 1, total_price: "10", user_id: user.id
 }
+
+
 
 big_cate = ["Clothes, Shoes", "Computer", "TV", "Personal stuff"]
 big_cate.each do |stuff,index|
@@ -41,7 +47,7 @@ big_cate.each do |stuff,index|
         name = Faker::Name.name
         price = Faker::Commerce.price
         description = Faker::Lorem.sentence(20)
-        img = File.open(File.join(Rails.root, "1.jpg"))
+        img = nil
         tmp = Random.rand(10)
         if tmp < 2
           hot = true
