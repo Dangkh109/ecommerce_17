@@ -2,9 +2,9 @@
   <h1><%= t :Cate %></h1>
   <% @categories.each do |cate| %>
     <% if cate.name.nil? %>
-      <h3><%= link_to t(:missing_name), category_index_path(id: cate.id) %></h3>
+      <h3><%= link_to t(:missing_name), category_path(id: cate.id) %></h3>
     <% else %>
-      <h3><%= link_to cate.name, category_index_path(id: cate.id) %></h3>
+      <h3><%= link_to cate.name, category_path(id: cate.id) %></h3>
     <% end %>
   <% end %>
   <% @products.each do |product| %>
