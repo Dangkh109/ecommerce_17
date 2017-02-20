@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :category, only: [:index, :show] do
-    resources :products, only: [:index]
+    resources :products, only: [:index, :show]
   end
+  get "*path", to: "static_pages#home"
 end

@@ -80,5 +80,33 @@ footer{
 }
 #word-li{
   color: white;
-  display: inline;
+}
+.image-product{
+  width:304px;
+  height:228px;
+}
+.image-product-side{
+  width:180px;
+  height:118px;
+}
+.image-product-bot{
+  width:104px;
+  height:98px;
+}
+.navbar{
+  min-height:10px !important;
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+.header1{
+  padding-right: 200px;
+  background-color: #666666;
+}
+.header2{
+  margin-top: 30px;
+  height: 70px;
+  background-color: #555555;
 }
