@@ -2,7 +2,9 @@
   <% @categories.each do |cate| %>
     <h3><%= link_to cate.name, category_path(cate.id) %></h3>
     <% cate.products.each do |prod| %>
-      <p><%= link_to prod.name, "#" %></p>
+      <p><%= link_to prod.name, category_product_path(
+        category_id: prod.category_id, id: prod.id) %>
+      </p>
     <% end %>
   <% end %>
 </div>

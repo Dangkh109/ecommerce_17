@@ -9,9 +9,13 @@
   <% end %>
   <% @products.each do |product| %>
     <% if product.name.nil? %>
-      <p><%= link_to t(:missing_name), "#" %></p>
+      <p><%= link_to t(:missing_name), category_product_path(
+        category_id: product.category_id, id: product.id) %>
+      </p>
     <% else %>
-      <p><%= link_to product.name, "#" %></p>
+      <p><%= link_to product.name, category_product_path(
+        category_id: product.category_id, id: product.id) %>
+      </p>
     <% end %>
   <% end %>
 </div>
