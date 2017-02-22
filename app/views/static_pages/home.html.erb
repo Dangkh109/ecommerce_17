@@ -1,4 +1,28 @@
 <div class="container">
   <h1><%= t :FECO %></h1>
   <p><%= t :incomming %></p>
+  <% @products.each_with_index do |kind, index| %>
+    <div class="container text-center product-border">
+      <% if index == 0 %>
+        <h3><%= t :HOT %></h3>
+      <% else %>
+        <h3><%= t :Randomize %></h3>
+      <% end %>
+      <div class="row">
+        <% kind.each_with_index do |product, index| %>
+          <div class="col-sm-4">
+            <p><strong><%= product.name %></strong></p>
+            <div style="display: block;"><%= picture_for product %></div>
+            <button type="button" class="btn btn-info" data-toggle="collapse"
+              data-target="#<%= product.id %>"><%= t :Price %></button>
+            <div id="<%= product.id %>" class="collapse">
+              <p><%= product.price %></p>
+              <%= link_to t(:Want_more_detail), category_product_path(
+                category_id: product.category_id, id: product.id) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
