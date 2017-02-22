@@ -6,14 +6,14 @@ class Supports::Product
   end
 
   def relate
-    @relate ||= Product.get_relate @product
+    @relate ||= Product.take_relate @product
   end
 
   def hot
-    @hot = Product.get_hot @product
+    @hot = Product.take_hot @product
   end
 
   def randomizes
-    @randomizes = Product.get_random
+    @randomizes = Product.take_random
   end
 end
