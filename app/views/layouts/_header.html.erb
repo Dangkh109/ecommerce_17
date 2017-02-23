@@ -2,7 +2,7 @@
     <div class="collapse navbar-collapse header1" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to t(:Viewed), about_path, id: "word-li" %></li>
-        <li><%= link_to t(:Cart), about_path, id: "word-li" %></li>
+        <li><%= link_to t(:cart), sessions_path,id: "word-li" %></li>
         <li><%= link_to t(:Pay), about_path, id: "word-li" %></li>
         <% if user_signed_in? %>
           <li class="dropdown">

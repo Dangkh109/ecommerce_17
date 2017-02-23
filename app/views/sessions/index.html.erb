@@ -1,0 +1,29 @@
+<div class="container">
+<h1>Cart</h1>
+  <%= form_tag @sessions_path, method: :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag t(:search), name: nil %>
+    </p>
+  <% end %>
+  <ul>
+    <% if @product_quantity.present? %>
+      <% product = @product_quantity.first.first %>
+      <%= form_for(:sessions, url: session_path(id: product.id), method: :delete) do |f| %>
+        <%= f.hidden_field :delete_all, value: :all %>
+        <%= f.submit t :delete_all_cart %>
+      <% end %>
+    <% end %>
+    <% @product_quantity.each do |product, quantity| %>
+      <li>
+        <p><%= link_to product.name,
+          category_product_path(category_id: product.category_id, id: product.id) %>
+        </p>
+        <p><%= link_to quantity, "#" %></p>
+        <%= form_for(:sessions, url: session_path(id: product.id), method: :delete) do |f| %>
+          <%= f.submit t :delete_cart %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

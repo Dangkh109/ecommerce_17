@@ -47,6 +47,7 @@ big_cate.each do |stuff,index|
         name = Faker::Name.name
         price = Faker::Commerce.price
         description = Faker::Lorem.sentence(20)
+        quantity = Faker::Number.between(0,13)
         img = nil
         tmp = Random.rand(10)
         if tmp < 2
@@ -55,7 +56,7 @@ big_cate.each do |stuff,index|
           hot = false
         end
         tmp = cate_child.products.create!(name: name, price: price,
-          description: description, is_hot: hot, category_id: cate_child.id)
+          description: description, is_hot: hot, category_id: cate_child.id, in_stock: quantity)
       end
     end
   end

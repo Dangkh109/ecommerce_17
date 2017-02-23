@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :category, only: [:index, :show] do
     resources :products, only: [:index, :show]
   end
-  # get "*path", to: "static_pages#home"
-  
   namespace :admin do
     resources :users
   end
+  resources :sessions, only: [:index, :create, :destroy]
+  get "*path", to: "static_pages#home"
 end

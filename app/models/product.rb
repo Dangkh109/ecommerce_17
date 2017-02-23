@@ -24,4 +24,9 @@ class Product < ApplicationRecord
   def self.get_product_by_category id, category
     @result = category.products.find_by id: id
   end
+
+  def self.load_product_by_id search, array
+    @name_search = search.present? ? search : " "
+    Product.where(id: array).select{|product| product.name.include? @name_search }
+  end
 end

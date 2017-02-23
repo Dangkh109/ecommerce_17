@@ -10,4 +10,8 @@ module ApplicationHelper
   def index_for counter, page, limit
     (page - 1) * limit + counter + 1
   end
+
+  def validate_product product_id
+    return @product.in_stock.present? && @product.in_stock > 0 && session[@product.id].nil? ? true : false
+  end
 end
