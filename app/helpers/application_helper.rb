@@ -15,4 +15,9 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     link_to column, sort: column, direction: direction
   end
+
+  def validate_product product_id
+    @product.in_stock.present? && @product.in_stock > 0 &&
+      session[@product.id].nil? ? true : false
+  end
 end
