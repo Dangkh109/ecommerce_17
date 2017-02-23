@@ -1,19 +1,19 @@
 <div class="container">
-  <h1><%= t :Cate %></h1>
+  <h1><%= t :cate %></h1>
   <% @categories.each do |cate| %>
-    <% if cate.name.nil? %>
-      <h3><%= link_to t(:missing_name), category_path(id: cate.id) %></h3>
-    <% else %>
+    <% if cate.name.present? %>
       <h3><%= link_to cate.name, category_path(id: cate.id) %></h3>
+    <% else %>
+      <h3><%= link_to t(:missing_name), category_path(id: cate.id) %></h3>
     <% end %>
   <% end %>
   <% @products.each do |product| %>
-    <% if product.name.nil? %>
-      <p><%= link_to t(:missing_name), category_product_path(
+    <% if product.name.present? %>
+      <p><%= link_to product.name, category_product_path(
         category_id: product.category_id, id: product.id) %>
       </p>
     <% else %>
-      <p><%= link_to product.name, category_product_path(
+      <p><%= link_to t(:missing_name), category_product_path(
         category_id: product.category_id, id: product.id) %>
       </p>
     <% end %>
