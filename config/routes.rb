@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
+    resources :categories
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   get "*path", to: "static_pages#home"
