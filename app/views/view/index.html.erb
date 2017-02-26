@@ -1,0 +1,12 @@
+<div class="container">
+<h1>Viewed</h1>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <p><%= link_to product.name,
+          category_product_path(category_id: product.category_id, id: product.id) %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -26,7 +26,6 @@ big_cate.each do |stuff,index|
   description = Faker::Lorem.sentence(5)
   code_dad = "00"+index.to_s
   dad = Category.create!(name: name, parent_id: 0, description: description, code: code_dad)
-  #child = 2 + Random.rand(5)
   child = 2
   child.times do |n|
     name = Faker::Name.name
@@ -34,7 +33,6 @@ big_cate.each do |stuff,index|
     description = Faker::HarryPotter.quote
     cate = Category.create!(name: name, parent_id: dad.id,
       description: description, code: code)
-    #child_child = Faker::Number.between(3, 5)
     child_child = 2
     child_child.times do |m|
       child_code = code+ Faker::Number.number(3)

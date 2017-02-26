@@ -1,5 +1,6 @@
 <div class="container">
 <h1>Cart</h1>
+  <% link_to "pay", users_orders_path, action: :create %>
   <%= form_tag @sessions_path, method: :get do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
@@ -8,6 +9,7 @@
   <% end %>
   <ul>
     <% if @product_quantity.present? %>
+      <%= link_to "pay", users_orders_path, method: :post%>
       <% product = @product_quantity.first.first %>
       <%= form_for(:sessions, url: session_path(id: product.id), method: :delete) do |f| %>
         <%= f.hidden_field :delete_all, value: :all %>
@@ -26,4 +28,5 @@
       </li>
     <% end %>
   </ul>
+
 </div>
