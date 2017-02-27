@@ -7,21 +7,32 @@ class Product < ApplicationRecord
     med: Settings.medium, large: Settings.large}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  def self.get_hot item
-    @result = Product.select{|prod| prod.is_hot &&
-      prod.category_id == item.category_id}.shuffle.first
-  end
+  class << self
+    def take_hot_product item
+      @result = Product.select{|product|
+        product.is_hot && product.category_id == item.category_id}.shuffle.first
+    end
 
-  def self.get_relate item
-    @result = Product.select{|prod| prod.category_id == item.category_id}
-      .shuffle.take(Settings.Product_take_rand)
-  end
+    def take_relate_product item
+      @result = Product.select{|product| product.category_id == item.category_id}
+        .shuffle.take Settings.product.take_rand
+    end
 
-  def self.get_random
-    @result = Product.order("RANDOM()").take(Settings.Product_take_rand)
-  end
+    def take_random_product
+      @result = Product.order("RANDOM()").take Settings.product.take_rand
+    end
 
-  def self.get_product_by_category id, category
-    @result = category.products.find_by id: id
+    def get_product_by_category id, category
+      @result = category.products.find_by id: id
+    end
+
+    def take_home_product
+      @result = Product.select{|product|
+      product.is_hot}.shuffle.take Settings.product.take_home
+    end
+
+    def search search, category_id
+      search ? where("name LIKE '%#{search}%' AND category_id = #{category_id}") : all
+    end
   end
 end
