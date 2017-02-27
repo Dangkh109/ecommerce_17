@@ -1,55 +1,95 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="collapse navbar-collapse header1" id="myNavbar">
+  <div class="row color-nav">
+    <div class="col-md-7" >
+      <h3 class="page-title"><%= link_to t(:title), root_path, id: "word-li" %></h3>
+    </div>
+    <div class="col-md-4" >
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t(:Viewed), about_path, id: "word-li" %></li>
-        <li><%= link_to t(:cart), sessions_path, id: "word-li" %></li>
-        <li><%= link_to t(:Pay), about_path, id: "word-li" %></li>
+        <li><%= link_to t(:viewed), about_path, id: "word-li" %></li>
+        <li><%= link_to t(:cart), about_path, id: "word-li" %></li>
+        <li><%= link_to t(:pay), about_path, id: "word-li" %></li>
         <% if user_signed_in? %>
-          <li class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button"
-              id="menu1" data-toggle="dropdown"><%= t :account_title %>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <%= link_to t(:setting_title), edit_user_registration_path,
-                  id: "word-li" %>
-              </li>
-              <li class="divider"></li>
-              <li><%= link_to t(:view_layout_header_logout),
-                destroy_user_session_path, method: :delete, id: "word-li" %>
-              </li>
-            </ul>
-          </li>
+          <button type="button" class="btn btn-info btn-sm btn-sign" id="menu1"
+            data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> <%= t :user %>
+          </button>
+          <ul class="dropdown-menu text-center">
+            <li>
+              <%= link_to t(:setting_title), edit_user_registration_path %>
+            </li>
+            <li class="divider"></li>
+            <li><%= link_to t(:view_layout_header_logout),
+              destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
         <% else %>
-          <li class="dropdown">
-             <button class="btn btn-default dropdown-toggle"
-              type="button" id="menu1" data-toggle="dropdown">
-                <p ><%= t :Login %></p>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <%= link_to t(:view_layout_header_login),
-                  new_user_session_path %>
-              </li>
-              <li class="divider"></li>
-                <%= link_to t(:view_layout_header_facebook),
-                  user_facebook_omniauth_authorize_path,id: "word-li" %>
-            </ul>
-          </li>
+          <button type="button" class="btn btn-info btn-sm btn-sign" id="menu1"
+            data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> <%= t :user %>
+          </button>
+          <ul class="dropdown-menu text-center">
+            <li>
+              <%= link_to t(:view_layout_header_login), new_user_session_path %>
+            </li>
+            <li class="divider"></li>
+            <li><%= link_to t(:view_layout_header_facebook),
+              user_facebook_omniauth_authorize_path %>
+            </li>
+          </ul>
         <% end %>
       </ul>
     </div>
+  </div>
 </nav>
-<nav class="navbar navbar-default navbar-fixed-top header2">
-    <div class="row">
-      <div class="col-md-6">
-        <h3><%= t :FECO %></h3>
-      </div>
-      <div class="col-md-4">
-        <ul class="nav navbar-nav">
-          <li><%= link_to t(:News), about_path %></li>
-        </ul>
-      </div>
+<div class="container padding-nav">
+  <div class="row">
+    <div class="col-md-2">
+      <h1 class="header-logo"><%= t :logo %></h1>
     </div>
-</nav>
+    <ul class="list-group">
+      <li>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="navbar-form navbar-left">
+            <%= form_tag @products_path, method: :get do %>
+              <%= hidden_field_tag :direction, params[:direction] %>
+              <%= hidden_field_tag :sort, params[:sort] %>
+              <%= text_field_tag :search, params[:search],
+                class: "form-control form-width", placeholder: t(:search) %>
+              <%= submit_tag t(:search), name: nil, class: "btn btn-default" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="col-md-6 col-md-offset-2 padding-menu">
+          <ul class="nav navbar-nav menu-nav">
+            <li class="menu-width">
+              <%= link_to t(:home), root_path, id: "word-li" %>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:category), category_index_path, id: "word-li" %>
+              <div class="dropdown-content">
+                <% @parent_category.each_with_index do |parent_category, index| %>
+                  <div class="nav-column">
+                    <h3><%= parent_category.name %></h3>
+                    <% @child_category[index].each do |category| %>
+                      <p>
+                        <%= link_to category.name, category_path(category.id) %>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:news), about_path, id: "word-li" %>
+            </li>
+            <li class="menu-width">
+              <%= link_to t(:about), about_path, id: "word-li" %>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,8 +1,8 @@
 <div class="container">
   <% @categories.each do |category| %>
-    <h3><%= link_to cate.name, category_path(category.id) %></h3>
+    <h3><%= link_to category.name, category_path(category.id) %></h3>
     <% category.products.each do |product| %>
-      <p><%= link_to prod.name, category_product_path(
+      <p><%= link_to product.name, category_product_path(
         category_id: product.category_id, id: product.id) %>
       </p>
     <% end %>

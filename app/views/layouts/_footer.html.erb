@@ -1,3 +1,30 @@
-<footer class="text-center">
-  <p><%= t :footer %></p>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <h1 class= "header-h1"><%= t :logo %></h1>
+      </div>
+      <div class="col-md-4">
+        <h3 class="header-h3"><%= t :about %></h3>
+        <p><%= t :address %></p>
+        <p><%= t :mobile %></p>
+        <p><%= t :mail %></p>
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <h3 class="header-h3"><%= t :support %></h3>
+        <ul>
+          <p><%= link_to t(:payment), root_path, id: "word-footer" %></p>
+          <p><%= link_to t(:shipping), root_path, id: "word-footer" %></p>
+          <p><%= link_to t(:sale_off), root_path, id: "word-footer" %></p>
+        </ul>
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <h3 class="header-h3"><%= t :follow_us %></h3>
+        <i class="fa fa-facebook-square icon-footer"></i>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-footer">
+    <p class="footer-footer-text"><%= t :author %></p>
+  </div>
 </footer>

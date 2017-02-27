@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :load_random_product
+  before_action :load_random_product, :load_category_menu
 
   rescue_from CanCan::AccessDenied do
     redirect_to root_path
@@ -23,5 +23,16 @@ class ApplicationController < ActionController::Base
 
   def load_random_product
     @randomize = Product.take_random_product
+  end
+
+  def load_category_menu
+    @parent_category = Category.where("parent_id = ?", Settings.category_id.parent)
+      .limit Settings.menu.ancestor_number
+    @child_category = Array.new
+    @parent_category.each do |category|
+      @list_category = Category.where("parent_id = ?", category.id)
+        .limit Settings.menu.child_number
+      @child_category.append @list_category
+    end
   end
 end
