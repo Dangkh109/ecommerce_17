@@ -57,6 +57,9 @@ big_cate.each do |stuff,index|
         end
         tmp = cate_child.products.create!(name: name, price: price,
           description: description, is_hot: hot, category_id: cate_child.id, in_stock: quantity)
+        2.times do |k|
+          tmp.comments.create! content: description, user_id: k + 1
+        end
       end
     end
   end

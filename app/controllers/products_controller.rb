@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
       else
         session[:viewed] = [@product.id]
       end
+      @comments = @product.comments.order created_at: :DESC
     end
   end
 
