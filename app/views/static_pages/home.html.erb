@@ -1,6 +1,32 @@
 <div class="container">
-  <h1><%= t :feco %></h1>
-  <p><%= t :incomming %></p>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <%= link_to image_tag("0.png", class: "carousel-image"), root_path %>
+      </div>
+      <div class="item">
+        <%= link_to image_tag("1.png", class: "carousel-image"), root_path %>
+      </div>
+      <div class="item">
+        <%= link_to image_tag("2.png", class: "carousel-image"), root_path %>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only"><%= t :previous %></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only"><%= t :next %></span>
+    </a>
+  </div>
+</div>
+<div class="container">
   <div class="container text-center product-border">
     <h3><%= t :hot %></h3>
     <div class="row">
@@ -9,9 +35,12 @@
           <p><strong><%= product.name %></strong></p>
           <div><%= picture_for product %></div>
           <button type="button" class="btn btn-info" data-toggle="collapse"
-            data-target="#<%= product.id %>"><%= t :price %></button>
+            data-target="#<%= product.id %>"><%= t :price %>
+          </button>
           <div id="<%= product.id %>" class="collapse">
-            <p><%= product.price %></p>
+            <p class="price-product">
+              <%= product.price %><i class="fa fa-dollar size-icon"></i>
+            </p>
             <%= link_to t(:want_more_detail), category_product_path(
               category_id: product.category_id, id: product.id) %>
           </div>

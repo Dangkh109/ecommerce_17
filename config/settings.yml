@@ -9,3 +9,8 @@ product:
   per_page: 10
   take_home: 3
   min_quantity: 1
+menu:
+  ancestor_number: 4
+  child_number: 5
+category_id:
+  parent: 0

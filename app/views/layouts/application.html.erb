@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <link href="//fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Annie Use Your Telescope" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
@@ -20,19 +22,27 @@
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
     <%= yield %>
-  </body>
-  <footer>
     <div class="container">
-      <div class="text-center"><h3><%= t :randomize %></h3></div>
-      <div class="row">
-        <% @randomize.each do |product| %>
-          <div class="col-md-2">
-            <%= link_to picture_for(product),
-              category_product_path( category_id: product.category_id, id: product.id) %>
-          </div>
-        <% end %>
+      <div class="container product-border">
+        <div class="text-center">
+          <h3><%= t :randomize %></h3>
+        </div>
+        <div class="row">
+          <% @randomize.each do |product| %>
+            <div class="col-md-2 random-width">
+              <%= link_to picture_for(product),
+                category_product_path(category_id: product.category_id, id: product.id) %>
+              <p class="name-product"><%= product.name %></p>
+              <p class="price-product"><%= product.price %>
+                <i class="fa fa-dollar size-icon"></i>
+              </p>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
+  </body>
+  <footer>
     <iframe
       frameborder="0" class="iframe_footer"
       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDqmomkHQUQBKe4NK8iyHjwJry5RCXJjqo
