@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     resources :categories
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
+  resources :view, only: [:index]
+  namespace :users do
+    resources :orders, only: [:index, :create, :show]
+  end
   get "*path", to: "static_pages#home"
 end

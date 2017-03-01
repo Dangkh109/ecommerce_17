@@ -20,4 +20,8 @@ module ApplicationHelper
     @product.in_stock.present? && @product.in_stock > 0 &&
       session[@product.id].nil? ? true : false
   end
+
+  def time_type time
+    time.to_time.strftime Settings.activity_time_format
+  end
 end

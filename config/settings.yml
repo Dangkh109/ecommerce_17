@@ -14,3 +14,10 @@ menu:
   child_number: 5
 category_id:
   parent: 0
+activity_time_format: "%H:%M:%S %d/%m/%Y"
+viewed:
+  number_product: 15
+order:
+  per_page: 10
+  new: 0
+success: "success"
