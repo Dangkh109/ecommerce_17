@@ -16,6 +16,7 @@
       <p><%= @product.in_stock  %></p>
       <p><%= t :rate %></p>
       <p><%= @product.rate_average %></p>
+      <p><%= social_share_button_tag @product.name %></p>
 
       <% if validate_product @product.id %>
         <%= form_for :sessions, url: sessions_path do |f| %>
