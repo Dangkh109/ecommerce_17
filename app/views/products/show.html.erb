@@ -1,59 +1,83 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <%= picture_for @product %>
+    <div class="col-md-4 text-center">
+      <div><%= picture_for @product, "detail" %></div>
       <button type="button" class="btn btn-info" data-toggle="collapse"
         data-target="#demo"><%= t :describe %></button>
       <div id="demo" class="collapse">
         <%= @product.description %>
       </div>
     </div>
-    <div class="col-md-3 col-md-offset-3">
-      <h3><%= t :detail %></h3>
-      <p><%= t :name  %><%= @product.name %></p>
-      <p><%= t :price %><%= @product.price %></p>
-      <p><%= t :in_stock %></p>
-      <p><%= @product.in_stock  %></p>
-      <p><%= t :rate %></p>
+    <div class="col-md-4 border-product-detail">
+      <p class="name-product-detail name-product-show"><%= @product.name %></p>
+      <p class="price-product-detail price-product-show"><%= @product.price %>
+        <i class="fa fa-dollar size-icon"></i>
+      </p>
+      <div>
+        <p class="product-detail stock-product-show"><%= t :in_stock %></p>
+        <p class="product-detail right-text"><%= @product.in_stock %></p>
+      </div>
+      <p class="product-detail rate-product-show"><%= t :rate %></p>
+      <% if @supports.rating.present? %>
+        <div class="rating-number-show" id="<%= @supports.rating.id %>">
+          <% Settings.rating.number_star.times do |x| %>
+            <% if @supports.rating.rate == x+1 %>
+              <p class="rating" id="number-rating-select"><%= x+1 %></p>
+            <% else %>
+              <p class="rating" id="number-rating"><%= x+1 %></p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="rating-number-show" id="0">
+          <% Settings.rating.number_star.times do |x| %>
+            <p class="rating" id="number-rating">
+              <%= link_to x+1, ratings_path(rate: x+1, product_id: @product.id),
+                method: :post %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
       <p><%= @product.rate_average %></p>
-      <p><%= social_share_button_tag @product.name %></p>
-
+      <div class="right-text"><%= social_share_button_tag @product.name %></div>
       <% if validate_product @product.id %>
         <%= form_for :sessions, url: sessions_path do |f| %>
           <%= f.hidden_field :product_id, value: @product.id %>
           <%= f.hidden_field :category_id, value: @product.category_id %>
           <%= f.number_field :quantity, min: Settings.product.min_quantity,
-            max: @product.in_stock, value: Settings.product.min_quantity %>
-          <%= f.submit t :cart %>
+            max: @product.in_stock, value: Settings.product.min_quantity,
+            class: "form-control text-center form-number-input" %>
+          <%= f.submit t(:cart), class: "btn btn-info
+            right-text stock-product-show" %>
         <% end %>
       <% end %>
       <% if session[@product.id].present? %>
-        <%= form_for :sessions, url: session_path(@product.id), method: :delete do |f| %>
-          <%= f.submit t :delete_cart %>
-        <% end %>
-        <%= form_for :sessions, url: session_path, method: :patch do |f| %>
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.hidden_field :category_id, value: @product.category_id %>
-          <%= f.number_field :quantity, min: Settings.product.min_quantity,
-            max: @product.in_stock, value: Settings.product.min_quantity %>
-          <%= f.submit t :update_cart %>
-        <% end %>
+        <%= render "update_delete_form" %>
       <% end %>
     </div>
-    <div class="col-md-2">
-      <% if @supports.hot.present? %>
-        <h3><%= t :hot %></h3>
-        <%= link_to picture_for(@supports.hot),
-          category_product_path(id: @supports.hot.id) %>
-      <% end %>
+    <div class="col-md-3 col-md-offset-1 border-product-detail">
+      <div class="padding-hot">
+        <% if @supports.hot.present? %>
+          <div class="text-center">
+            <h3><%= t :hot %></h3>
+          </div>
+          <%= link_to picture_for(@supports.hot),
+            category_product_path(category_id: @supports.hot.category_id,
+            id: @supports.hot.id) %>
+          <p class="name-product"><%= @supports.hot.name %></p>
+          <p class="price-product"><%= @supports.hot.price %>
+            <i class="fa fa-dollar size-icon"></i>
+          </p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 <div class="container">
-  <div class="col-md-8" id="comments">
+  <div class="col-md-9" id="comments">
     <%= render @comments %>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <% if user_signed_in? %>
       <h2><%= t :comment %></h2>
       <%= form_for [@product, @product.comments.new], method: :post, remote: true do |f| %>
@@ -69,23 +93,4 @@
     <% end %>
   </div>
 </div>
-<div class="container">
-  <div class="text-center"> <h3> <%= t :relate_product %></h3> </div>
-  <div class="row">
-    <% @supports.relate.each do |product| %>
-      <div class="col-md-2">
-      <%= link_to image_tag("miss.png", class: "image-product-bot"),
-        category_product_path(id: product.id) %>
-    </div>
-    <% end %>
-  </div>
-  <div class="text-center"><h3><%= t :randomize %></h3></div>
-  <div class="row">
-    <% @supports.randomizes.each do |random| %>
-      <div class="col-md-2">
-      <%= link_to picture_for(random), category_product_path(
-        category_id: random.category_id, id: random.id) %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render "relate_product" %>

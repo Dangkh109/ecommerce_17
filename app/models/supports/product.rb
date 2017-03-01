@@ -1,8 +1,9 @@
 class Supports::Product
   attr_reader :product
 
-  def initialize product
+  def initialize product, user
     @product = product
+    @user = user
   end
 
   def relate
@@ -15,5 +16,9 @@ class Supports::Product
 
   def randomizes
     @randomizes = Product.take_random_product
+  end
+
+  def rating
+    @user.nil? ? nil : Rating.find_by(product_id: @product.id, user_id: @user.id)
   end
 end

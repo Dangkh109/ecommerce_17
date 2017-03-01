@@ -21,3 +21,5 @@ order:
   per_page: 10
   new: 0
 success: "success"
+rating:
+  number_star: 5

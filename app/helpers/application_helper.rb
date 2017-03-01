@@ -1,10 +1,11 @@
 module ApplicationHelper
-  def picture_for product
-    if product.image?
-      image_tag product.image, class: "image-product-side"
-    else
-      image_tag "missing.jpg", class: "image-product-side"
-    end
+  def picture_for product, top = nil
+    product.image? ? image_for_top(product.image, top) : image_for_top("missing.jpg", top)
+  end
+
+  def image_for_top picture, top
+    top.nil? ? image_tag(picture, class: "image-product-side") :
+      image_tag(picture, class: "image-product-detail")
   end
 
   def index_for counter, page, limit
@@ -23,5 +24,12 @@ module ApplicationHelper
 
   def time_type time
     time.to_time.strftime Settings.activity_time_format
+  end
+
+  def check_role_current_user
+    if current_user.nil? || current_user.admin?
+      flash[:warning] = t :log_in_as_user
+      redirect_to :back
+    end
   end
 end
