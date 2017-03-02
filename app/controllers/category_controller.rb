@@ -2,8 +2,7 @@ class CategoryController < ApplicationController
   before_action :load_category, only: [:show]
 
   def index
-    @products = Product.order("RANDOM()").take Settings.product.take_rand
-    @categories = Category.select{|cate| cate.parent_id == Settings.Parent_id}
+    @categories = Category.select{|cate| cate.parent_id == Settings.category_id.parent}
   end
 
   def show

@@ -80,7 +80,8 @@
   <div class="col-md-9">
     <% if user_signed_in? %>
       <h2><%= t :comment %></h2>
-      <%= form_for [@product, @product.comments.new], method: :post, remote: true do |f| %>
+      <%= form_for [@product, @product.comments.new],
+        method: :post, remote: true do |f| %>
         <div class="form-group">
           <%= f.text_area :content, class: "form-control" %>
         </div>

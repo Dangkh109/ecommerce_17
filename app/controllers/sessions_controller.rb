@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @products = Product.load_product_by_id params[:search], session[:cart]
@@ -33,14 +34,27 @@ class SessionsController < ApplicationController
   end
 
   def update
-    @product = Product.find_by id: session_params[:product_id]
-    session[:total_price] += (session_params[:quantity] - session[@product.id]) *
-      @product.price
-    session[session_params[:product_id]] = session_params[:quantity]
-    redirect_to :back
+    if params[:status] == Settings.ajax
+      @product = Product.find_by id: params[:id]
+      respond_to do |format|
+        diffirent = (params[:value].to_i - session[params[:id]].to_i) *
+          @product.price
+        session[:total_price] += diffirent
+        session[params[:id]] = params[:value]
+        format.json{render json: (Settings.money % diffirent)}
+      end
+    else
+      @product = Product.find_by id: session_params[:product_id]
+      session[:total_price] +=
+        (session_params[:quantity].to_i - session[@product.id].to_i) * @product.price
+      session[session_params[:product_id]] = session_params[:quantity]
+      redirect_to :back
+    end
   end
 
   def destroy
+    @product = Product.find_by id: params[:id]
+    session[:total_price] -= session[@product.id].to_i * @product.price
     session[:cart].reject!{|id| id == params[:id]}
     session[params[:id]] = nil
     redirect_to :back

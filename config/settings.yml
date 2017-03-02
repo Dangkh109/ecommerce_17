@@ -23,3 +23,5 @@ order:
 success: "success"
 rating:
   number_star: 5
+money: "%.2f"
+ajax: "ajax"
