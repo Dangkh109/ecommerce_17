@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     @product = Product.find_by id: session_params[:product_id]
+    session[:total_price] = 0 if session[:total_price].nil?
     if @product.present?
       quantity = session_params[:quantity].to_i
       if quantity > 0 && quantity <= @product.in_stock
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
           session[:cart] = [session_params[:product_id]]
         end
         session[session_params[:product_id]] = session_params[:quantity]
+        session[:total_price] += @product.price * quantity
         redirect_to :back
       else
         flash[:warning] = t :product_invalid_quantity
@@ -31,6 +33,9 @@ class SessionsController < ApplicationController
   end
 
   def update
+    @product = Product.find_by id: session_params[:product_id]
+    session[:total_price] += (session_params[:quantity] - session[@product.id]) *
+      @product.price
     session[session_params[:product_id]] = session_params[:quantity]
     redirect_to :back
   end

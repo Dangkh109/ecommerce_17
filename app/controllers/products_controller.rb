@@ -16,6 +16,11 @@ class ProductsController < ApplicationController
       redirect_to home_path
     else
       @supports = Supports::Product.new @product
+      if session[:viewed].present?
+        session[:viewed] = session[:viewed].append @product.id
+      else
+        session[:viewed] = [@product.id]
+      end
     end
   end
 

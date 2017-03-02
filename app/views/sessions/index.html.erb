@@ -1,5 +1,6 @@
 <div class="container">
-<h1><%= t :cart %></h1>
+  <h1><%= t :cart %></h1>
+  <%= link_to t(:pay), users_orders_path, method: :post %>
   <%= form_tag @sessions_path, method: :get do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
