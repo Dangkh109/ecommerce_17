@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-  devise_scope :user do 
+  devise_scope :user do
     match "/sessions/user", to: "devise/sessions#create", via: :post
   end
   resources :category, only: [:index, :show] do
@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :show]
   end
   resources :ratings, only: [:create, :update]
+  resources :suggestions
   get "*path", to: "static_pages#home"
 end

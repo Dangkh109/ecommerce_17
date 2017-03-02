@@ -40,5 +40,9 @@ class Product < ApplicationRecord
       Product.where(id: array)
         .select{|product| product.name.include? @name_search}
     end
+
+    def take_distinct_category
+      Product.select(:category_id).distinct
+    end
   end
 end

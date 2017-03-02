@@ -25,3 +25,10 @@ rating:
   number_star: 5
 money: "%.2f"
 ajax: "ajax"
+suggestion:
+  inital_status: 0
+  size: 10
+  leng_description: 5000
+  one_line: 150
+  min_row: 1
+  max_row: 5
