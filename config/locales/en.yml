@@ -125,3 +125,7 @@ en:
   id: "id"
   login_please_as_user: "Please login as user"
   order_successfully: "Order is sent"
+  comment: "Comment"
+  login_comment: "Login to comment"
+  are_you_sure: "Are you sure?"
+  something_wrong: "Something wrong"

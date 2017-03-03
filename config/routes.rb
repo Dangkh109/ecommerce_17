@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_scope :user do 
+    match "/sessions/user", to: "devise/sessions#create", via: :post
+  end
   resources :category, only: [:index, :show] do
     resources :products, only: [:index, :show]
+  end
+  resources :products do
+    resources :comments
   end
   namespace :admin do
     resources :users

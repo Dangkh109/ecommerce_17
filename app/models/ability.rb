@@ -11,6 +11,7 @@ class Ability
           SuggestProduct, User]
         can :create, [Comment, Order, OrderDetail, Rating, SuggestProduct]
         can :update, [Comment, Rating]
+        can :delete, [Comment]
       else
         can :read, [Category, Comment, Order, OrderDetail, Product, Rating,
           SuggestProduct, User]
