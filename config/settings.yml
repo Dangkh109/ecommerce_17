@@ -32,3 +32,5 @@ suggestion:
   one_line: 150
   min_row: 1
   max_row: 5
+default_value: 0
+error_number: 400
