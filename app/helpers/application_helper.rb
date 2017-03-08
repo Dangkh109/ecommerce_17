@@ -32,4 +32,8 @@ module ApplicationHelper
       redirect_to :back
     end
   end
+
+  def get_product products, id
+    products[id]
+  end
 end

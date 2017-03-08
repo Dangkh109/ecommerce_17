@@ -15,7 +15,11 @@ User.create! name: "user", email: "user@gmail.com",
   password = "123456"
   user = User.create! name: name, email: email, phone: phone, address: address,
     password: password, password_confirmation: password, avatar: nil
-  Order.create! status: 1, total_price: "10", user_id: user.id
+  order1 = Order.create! status: 1, total_price: "10", user_id: user.id
+  order0 = Order.create! status: 0, total_price: "10", user_id: user.id
+  2.times do |n|
+    OrderDetail.create! quantity: 5, order_id: order0.id, product_id: n + 1
+  end
 }
 
 
@@ -47,7 +51,7 @@ big_cate.each do |stuff,index|
         name = Faker::Name.name
         price = Faker::Commerce.price
         description = Faker::Lorem.sentence(20)
-        quantity = Faker::Number.between(0,13)
+        quantity = Faker::Number.between(50,100)
         img = nil
         tmp = Random.rand(10)
         if tmp < 2

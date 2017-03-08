@@ -152,3 +152,6 @@ en:
   suggestion_save: "suggestion was saved"
   suggestion_error: "Opps, error happened"
   category_not_found: "Category might be removed"
+  update: "Update"
+  order_id: "Order ID: "
+  id: "Index"
