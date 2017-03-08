@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :users
     resources :orders
     resources :categories do
-      resources :products
+      resources :products do
+        collection { post :import }
+      end
     end
   end
   resources :sessions, only: [:index, :create, :update, :destroy]

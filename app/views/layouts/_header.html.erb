@@ -20,10 +20,6 @@
             <li>
               <%= link_to t(:category), admin_categories_path %>
             </li>
-            <li>
-              <%= link_to t(:product),
-                admin_category_products_path(category_id: 0) %>
-            </li>
             <li class="divider"></li>
             <li><%= link_to t(:view_layout_header_logout),
               destroy_user_session_path, method: :delete %>
