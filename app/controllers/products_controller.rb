@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       flash[:danger] = t :not_exist_data
       redirect_to home_path
     else
-      @supports = Supports::Product.new @product
+      @supports = Supports::Product.new @product, current_user
       if session[:viewed].present?
         session[:viewed] = session[:viewed].append @product.id
       else

@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   namespace :users do
     resources :orders, only: [:index, :create, :show]
   end
+  resources :ratings, only: [:create, :update]
   get "*path", to: "static_pages#home"
 end
