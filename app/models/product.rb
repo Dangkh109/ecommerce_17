@@ -72,5 +72,26 @@ class Product < ApplicationRecord
     def load_product_statitic
       Product.where("sold_quantity > 0").includes :category
     end
+
+    def to_csv options = {}
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |product|
+          csv << product.attributes.values_at(*column_names)
+        end
+      end
+    end
+
+    def load_product_by_order orders
+      products = Array.new
+      orders.each do |order_detail|
+        if products.present? && order_detail.product_id == products.last.first.id
+          products.last[1] += order_detail.quantity
+        else
+          products.append [order_detail.product, order_detail.quantity]
+        end
+      end
+      return products
+    end
   end
 end

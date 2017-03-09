@@ -13,7 +13,7 @@ class OrderDetail < ApplicationRecord
 
   class << self
     def load_orders_by_month time
-      OrderDetail.select{|order| order.created_at > time}.sort_by{|order| order.id}
+      OrderDetail.select{|order| order.created_at > time}.sort_by{|order| order.product_id}
     end
   end
 end
