@@ -10,4 +10,10 @@ class OrderDetail < ApplicationRecord
     product.update in_stock: product.in_stock - quantity
     product.update sold_quantity: product.sold_quantity + quantity
   end
+
+  class << self
+    def load_orders_by_month time
+      OrderDetail.select{|order| order.created_at > time}.sort_by{|order| order.id}
+    end
+  end
 end

@@ -168,3 +168,4 @@ en:
   order_noti_email: "Your order was process"
   total_price: "Total Price: "
   import_csv: "Import file"
+  line_chart: "Order statistic group by hour"

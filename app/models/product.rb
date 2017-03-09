@@ -68,5 +68,9 @@ class Product < ApplicationRecord
       else raise "#{file.original_filename}"
       end
     end
+
+    def load_product_statitic
+      Product.where("sold_quantity > 0").includes :category
+    end
   end
 end

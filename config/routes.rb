@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         collection{post :import}
       end
     end
+    resources :statistics, only: [:index]
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]
