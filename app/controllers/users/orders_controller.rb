@@ -17,6 +17,7 @@ class Users::OrdersController < ApplicationController
         product_id: product.id
     end
     session[:cart] = nil
+    session[:total_price] = nil
     flash[:success] = t :order_successfully
     redirect_to root_path
   end
