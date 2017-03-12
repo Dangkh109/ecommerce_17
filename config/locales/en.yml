@@ -161,3 +161,8 @@ en:
   update: "Update"
   update_success: "Update success"
   update_fail: "Update fail"
+  title_email: "Framgia shop"
+  body_email: "It's our pleasure to recieve your order. Your order is proccessed and you will get the product in 3 days. Everything you concern, please contact to the admin, or send a email to us. Many thanks to you. Hope you have a greate experiment with our service.
+"
+  hi: "Hi"
+  order_noti_email: "Your order was process"
