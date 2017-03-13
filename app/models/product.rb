@@ -1,10 +1,10 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :ratings, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :comments
   has_many :order_details, dependent: :destroy
   has_attached_file :image, styles: {small: Settings.small,
-    med: Settings.medium, large: Settings.large}
+    medium: Settings.medium, large: Settings.large}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   class << self
@@ -32,7 +32,8 @@ class Product < ApplicationRecord
     end
 
     def search search, category_id
-      search ? where("name LIKE '%#{search}%' AND category_id = #{category_id}") : all
+      search ? where("name LIKE '%#{search}%' AND category_id = #{category_id}") :
+        where("category_id = #{category_id}")
     end
 
     def load_product_by_id search, array

@@ -1,13 +1,7 @@
 <div class="container">
-  <% if @category.name.nil? %>
-    <h3>
-      <%= link_to t(:missing_name), category_products_path(id: @category.id) %>
-    </h3>
-  <% else %>
-    <h3>
-      <%= link_to @category.name, category_products_path(id: @category.id) %>
-    </h3>
-  <% end %>
+  <h3>
+    <%= link_to @category.name, category_products_path(id: @category.id) %>
+  </h3>
   <%= form_tag @products_path, method: :get do %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>

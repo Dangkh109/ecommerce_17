@@ -16,8 +16,10 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
-    resources :categories
     resources :orders
+    resources :categories do
+      resources :products
+    end
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]
