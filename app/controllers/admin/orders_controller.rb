@@ -27,6 +27,8 @@ class Admin::OrdersController < ApplicationController
         end
       else
         if @order.update_attributes status: :success
+          user = User.find_by id: @order.user_id
+          SendOrderMailer.send_order(user, @order).deliver_now
           flash[:success] = t :success_order
         else
           @order.update_attributes status: :delay
