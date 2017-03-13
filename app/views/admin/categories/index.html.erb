@@ -30,7 +30,9 @@
     <%= render @categories %>
   </tr>
 </table>
-<%= paginate @categories, theme: "twitter-bootstrap-3" %>
+<div class="text-center">
+  <%= paginate @categories, theme: "twitter-bootstrap-3" %>
+</div>
 <%= form_tag admin_categories_path , method: :post,
   id: "add-category-form" do %>
   <div id="category-modal" class="modal fade">
@@ -78,7 +80,6 @@
         <h3><%= t :edit_category %></h5>
       </div>
       <div class="modal-body-category-edit">
-
       </div>
     </div>
   </div>

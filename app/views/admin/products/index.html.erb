@@ -37,8 +37,17 @@
       </div>
     <% end %>
   </div>
-  <div class="text-center"><%= paginate @products %></div>
-  <button class="btn btn-danger pull-right">
-    <p id="delete-btn"><%= t :delete %></p>
-  </button>
+  <div class="padding-table">
+    <div class="text-center"><%= paginate @products %></div>
+    <button class="btn btn-danger pull-right">
+      <p id="delete-btn"><%= t :delete %></p>
+    </button>
+    <div>
+      <%= form_tag import_admin_category_products_path(category_id: @category.id),
+        multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag t(:import_csv), class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -51,6 +51,11 @@ class Admin::ProductsController < ApplicationController
       render(status: Settings.error_number)
   end
 
+  def import
+    Product.import params[:file]
+    redirect_to :back
+  end
+
   private
 
   def load_product
@@ -62,6 +67,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit:name, :description, :image, :price, :in_stock
+    params.require(:product).permit :name, :description, :image, :price, :in_stock
   end
 end
