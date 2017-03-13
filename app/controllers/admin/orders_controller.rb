@@ -29,6 +29,9 @@ class Admin::OrdersController < ApplicationController
         if @order.update_attributes status: :success
           user = User.find_by id: @order.user_id
           SendOrderMailer.send_order(user, @order).deliver_now
+          message_body = Order.load_info_to_chatwork @order
+          ChatWork::Message.create room_id: ENV["chatwork_room_id"],
+            body: message_body
           flash[:success] = t :success_order
         else
           @order.update_attributes status: :delay
