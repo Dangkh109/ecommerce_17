@@ -19,3 +19,10 @@
 //= require i18n.js
 //= require i18n/translations
 //= require_tree .
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('.alert').remove();
+    $('.flash').remove();
+  }, 5000);
+})

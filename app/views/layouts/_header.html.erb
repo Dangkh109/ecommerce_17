@@ -53,7 +53,7 @@
       <li>
         <div class="col-md-8 col-md-offset-2">
           <div class="navbar-form navbar-left">
-            <%= form_tag @products_path, method: :get do %>
+            <%= form_tag index_path, method: :get do %>
               <%= hidden_field_tag :direction, params[:direction] %>
               <%= hidden_field_tag :sort, params[:sort] %>
               <%= text_field_tag :search, params[:search],

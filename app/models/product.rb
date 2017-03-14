@@ -36,6 +36,10 @@ class Product < ApplicationRecord
         where("category_id = #{category_id}")
     end
 
+    def search_home search
+      search ? where("name LIKE '%#{search}%'") : all
+    end
+
     def load_product_by_id search, array
       @name_search = search.present? ? search : " "
       Product.where(id: array)
