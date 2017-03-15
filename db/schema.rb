@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308100937) do
+ActiveRecord::Schema.define(version: 20170310093843) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -52,15 +52,15 @@ ActiveRecord::Schema.define(version: 20170308100937) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.float    "price"
-    t.integer  "in_stock"
+    t.float    "price",              default: 0.0
+    t.integer  "in_stock",           default: 0
     t.string   "description"
     t.integer  "sold_quantity",      default: 0
-    t.boolean  "is_hot"
-    t.float    "rate_average"
+    t.boolean  "is_hot",             default: false
+    t.float    "rate_average",       default: 0.0
     t.integer  "category_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170308100937) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "name"
     t.index ["category_id"], name: "index_suggest_products_on_category_id"
     t.index ["user_id"], name: "index_suggest_products_on_user_id"
   end

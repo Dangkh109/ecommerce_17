@@ -34,3 +34,4 @@ suggestion:
   max_row: 5
 default_value: 0
 error_number: 400
+wait: "wait"

@@ -20,9 +20,11 @@ User.create! name: "user", email: "user@gmail.com",
   2.times do |n|
     OrderDetail.create! quantity: 5, order_id: order0.id, product_id: n + 1
   end
+  3.times do |n|
+    SuggestProduct.create! name: name, description: name, status: n,
+      user_id: user.id, category_id: n + 1
+  end
 }
-
-
 
 big_cate = ["Clothes, Shoes", "Computer", "TV", "Personal stuff"]
 big_cate.each do |stuff,index|
