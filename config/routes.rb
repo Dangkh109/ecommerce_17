@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
     resources :statistics, only: [:index]
+    resources :suggest_products
   end
   resources :sessions, only: [:index, :create, :update, :destroy]
   resources :view, only: [:index]
