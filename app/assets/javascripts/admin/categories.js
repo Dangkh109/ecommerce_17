@@ -1,15 +1,21 @@
 $(document).on('turbolinks:load', function() {
+  // $('.category-modal-edit').on('click', '.close'), function(){
+  //   e.preventDefault();
+  //   alert 'Hello'
+  //   return false
+  // });
   $('body').on('click', '.button-edit-category', function(e) {
     e.preventDefault();
-    $('.category-modal-edit').css('display', 'block')
+    $('#category-modal-edit').css('display', 'block')
     $.ajax({
       dataType: 'html',
       url: $(this).attr('href'),
       method: 'get',
       success: function(data) {
-        $('.modal-body-category-edit').html(data);
+        $('.edit-category-modal-body').html(data);
       }
     });
+    $('#category-modal-edit').modal('toggle');
     return false
   });
 });
