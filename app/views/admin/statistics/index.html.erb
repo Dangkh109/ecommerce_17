@@ -1,8 +1,12 @@
 <div class="container">
-  <%= line_chart @line %>
-  <h1 class="text-center"><%= t :line_chart %></h1>
+  <div id="hcontainer" data-chart="<%= @data %>"></div>
 </div>
 <div class="container product-border">
+  <div class="pull-right">
+    <button class="btn btn-warning">
+      <%= link_to t(:download_excel), admin_statistics_url(format: "xls"), id: "word-li" %>
+    </button>
+  </div>
   <div class="table-responsive padding-table">
     <table class="table table-width">
       <thead>
