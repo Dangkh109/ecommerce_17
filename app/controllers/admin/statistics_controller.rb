@@ -13,7 +13,17 @@ class Admin::StatisticsController < ApplicationController
     @products.each do |product, quantity|
       @data.append [product.name, quantity]
     end
+    StatisticsWorker.perform_at load_time
     @products = Kaminari.paginate_array(@products).page(params[:page])
       .per Settings.product.per_page
+  end
+
+  private
+
+  def load_time
+    year = Time.now.year
+    month = Time.now.mon
+    day = Time.days_in_month month, year
+    Time.new year, month, day
   end
 end

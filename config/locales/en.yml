@@ -184,3 +184,6 @@ en:
   order: "Order"
   product: "Product"
   enough_to_sell: "Enough to sell?"
+  title_email_statistic: "Statistic mothly"
+  body_mail_statistic: "Follow this link to see report"
+  link_statistic: "Click"
