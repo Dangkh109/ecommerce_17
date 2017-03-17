@@ -19,6 +19,7 @@ User.create! name: "user", email: "user@gmail.com",
   order0 = Order.create! status: 0, total_price: "10", user_id: user.id
   2.times do |n|
     OrderDetail.create! quantity: 5, order_id: order0.id, product_id: n + 1
+    OrderDetail.create! quantity: 6, order_id: order1.id, product_id: n + 1
   end
   3.times do |n|
     SuggestProduct.create! name: name, description: name, status: n,

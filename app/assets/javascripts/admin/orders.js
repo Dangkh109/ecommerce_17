@@ -10,6 +10,7 @@ $(document).on('turbolinks:load', function() {
         $('.modal-body-order-edit').html(data);
       }
     });
+    $('.order-modal-edit').modal('toggle')
     return false
   });
 })
